@@ -32,6 +32,7 @@ AUTH_USER_MODEL = 'login.CustomUser'
 
 INSTALLED_APPS = [
     'login',
+    'bksys',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -70,6 +71,7 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'bookingsystem_admin.wsgi.application'
 
+DATABASE_ROUTERS = ['bksys.router.DBRouter']
 
 # Database
 # https://docs.djangoproject.com/en/1.10/ref/settings/#databases
@@ -78,6 +80,13 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql', 
         'NAME': 'admin1',
+        'USER': 'root',
+        'PASSWORD': '123',
+        'HOST': 'localhost',   # Or an IP Address that your DB is hosted on
+    },
+    'rooms': {
+        'ENGINE': 'django.db.backends.mysql', 
+        'NAME': 'booking1',
         'USER': 'root',
         'PASSWORD': '123',
         'HOST': 'localhost',   # Or an IP Address that your DB is hosted on

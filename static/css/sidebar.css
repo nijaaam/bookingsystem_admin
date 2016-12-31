@@ -1,0 +1,45 @@
+.row {
+    margin - right: 0;
+    margin - left: 0;
+}
+
+.side - menu {
+    position: fixed;
+    width: 300 px;
+    height: 100 % ;
+    background - color: #f8f8f8;
+    border - right: 1 px solid# e7e7e7;
+}
+    
+.side - menu.navbar {
+    border: none;
+}
+
+.side - menu.navbar - header {
+    width: 100 % ;
+    border - bottom: 1 px solid# e7e7e7;
+}
+
+.side - menu.navbar - nav.active a {
+    background - color: transparent;
+    margin - right: -1 px;
+    border - right: 5 px solid# e7e7e7;
+}
+
+.side - menu.navbar - nav li {
+    display: block;
+    width: 100 % ;
+    border - bottom: 1 px solid# e7e7e7;
+}
+
+.side - menu.navbar - nav li a {
+    padding: 15 px;
+}
+
+.side - menu.navbar - nav li a.glyphicon {
+    padding - right: 10 px;
+}
+
+.side - body {
+    margin - left: 310 px;
+}
