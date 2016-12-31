@@ -1,21 +1,23 @@
 from django.shortcuts import render,render_to_response
 from django.http import HttpResponse
 import json
-from django.contrib.auth import authenticate
+from django.contrib.auth import authenticate, login
 
 
 def index(request):
-	return render(request,"home.html",{})
+	if 'username' in request.POST and 'password' in request.POST:
+		return auth(request)
+	else:
+		return render(request,"home.html",{})
 
 def auth(request):
-	user = request.POST['name']
-	password = request.POST['pass']
+	user = request.POST['username']
+	password = request.POST['password']
 	user = authenticate(username=user, password=password)
 	if user is not None:
-		print "Y"
-		# A backend authenticated the credentials
+		login(request,user)
+		return render(request,"home.html",{})
 	else:
-		print "N"
-		# No backend authenticated the credentials
+		return render(request,"login.html",{'msg':'Wrong Input, Try again.'})
 	print user,password
 	return HttpResponse(0)
