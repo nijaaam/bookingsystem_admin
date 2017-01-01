@@ -1,8 +1,12 @@
 from django.shortcuts import render
 from django.http import HttpResponse
 from .models import rooms
+from django.contrib.auth.decorators import login_required
+
 
 def index(request):
+	if request.user.is_authenticated():
+		print "Y"
 	return render(request,"dashb.html",{'username':'user'})
 
 def add_room(request):
@@ -20,3 +24,9 @@ def block_room(request):
 
 def newroom_template(request):
 	return render(request,"newroom.html",{})
+
+def editroom_template(request):
+	return render(request,"editroom.html",{})
+
+def blockroom_template(request):
+	return render(request,"blockroom.html",{})
