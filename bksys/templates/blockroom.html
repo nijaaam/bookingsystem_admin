@@ -1,41 +1,55 @@
+{% block search %} {% include "search.html" %}{% endblock %}
+<div id="viewroom"></div>
 <script type="text/javascript">
-    var substringMatcher = function(strs) {
-        return function findMatches(q, cb) {
-            var matches, substringRegex;
-            matches = [];
-            substrRegex = new RegExp(q, 'i');
-            $.each(strs, function(i, str) {
-                if (substrRegex.test(str)) {
-                    matches.push(str);
-                }
-            });
-            cb(matches);
-        };
-    };
-
-    var res = ['Alabama', 'Alaska', 'Arizona', 'Arkansas', 'California',
-        'Colorado', 'Connecticut', 'Delaware', 'Florida', 'Georgia', 'Hawaii',
-        'Idaho', 'Illinois', 'Indiana', 'Iowa', 'Kansas', 'Kentucky', 'Louisiana',
-        'Maine', 'Maryland', 'Massachusetts', 'Michigan', 'Minnesota',
-        'Mississippi', 'Missouri', 'Montana', 'Nebraska', 'Nevada', 'New Hampshire',
-        'New Jersey', 'New Mexico', 'New York', 'North Carolina', 'North Dakota',
-        'Ohio', 'Oklahoma', 'Oregon', 'Pennsylvania', 'Rhode Island',
-        'South Carolina', 'South Dakota', 'Tennessee', 'Texas', 'Utah', 'Vermont',
-        'Virginia', 'Washington', 'West Virginia', 'Wisconsin', 'Wyoming'
-    ];
-
     $('#search').typeahead({
         hint: true,
         highlight: true,
         minLength: 1
     }, {
         name: 'res',
-        source: substringMatcher(res) 
+        source: function(query, process) {
+            $.ajax({
+                type: 'POST',
+                url: 'autocomplete/',
+                dataType: 'json',
+                async: false,
+                data: 'search=' + $('#search').val(),
+                success: function(data) {
+                    return process(data);
+                },
+            });
+        },
     });
-</script>
-<script type="text/javascript">
+
+
     $('#search').on('typeahead:selected', function(e, datum) {
-        //alert(datum);
+        show_room(datum);
     });
+
+    function show_room(x) {
+        $.ajax({
+            type: 'POST',
+            url: 'getroom/',
+            dataType: 'html',
+            data: 'name=' + x,
+            success: function(data) {
+                $('#viewroom').html(data);
+                var btn = $('<button id = "block_btn" type ="submit" class="btn btn-default">Block this room</button>');
+                btn.click(function() {
+                    $.ajax({
+                        type: 'POST',
+                        url: 'block_room/',
+                        dataType: 'html',
+                        data: 'id=' + $('#id').val(),
+                        success: function(data) {
+                            $('#block').click();
+                        },
+                    });
+                    return false;
+                });
+                $('#button_group').append(btn);
+            },
+        });
+    }
+    $('#block_btn')
 </script>
-{% block search %} {% include "search.html" %}{% endblock %}
