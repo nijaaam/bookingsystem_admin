@@ -7,16 +7,12 @@ from django.contrib.auth.models import AbstractBaseUser, PermissionsMixin, BaseU
 
 class CustomUserManager(BaseUserManager):
 
-    def _create_user(self, email, password,
+    def _create_user(self, username, password,
                      is_staff, is_superuser, **extra_fields):
-        """
-        Creates and saves a User with the given email and password.
-        """
         now = timezone.now()
-        if not email:
-            raise ValueError('The given email must be set')
-        email = self.normalize_email(email)
-        user = self.model(email=email,
+        if not username:
+            raise ValueError('The given username must be set')
+        user = self.model(username=username,
                           is_staff=is_staff, is_active=True,
                           is_superuser=is_superuser, last_login=now,
                           date_joined=now, **extra_fields)
@@ -24,22 +20,16 @@ class CustomUserManager(BaseUserManager):
         user.save(using=self._db)
         return user
 
-    def create_user(self, email, password=None, **extra_fields):
-        return self._create_user(email, password, False, False,
+    def create_user(self, username, password=None, **extra_fields):
+        return self._create_user(username, password, False, False,
                                  **extra_fields)
 
-    def create_superuser(self, email, password, **extra_fields):
-        return self._create_user(email, password, True, True,
+    def create_superuser(self, username, password, **extra_fields):
+        return self._create_user(username, password, True, True,
                                  **extra_fields)
 
 class CustomUser(AbstractBaseUser, PermissionsMixin):
-    """
-    A fully featured User model with admin-compliant permissions that uses
-    a full-length email field as the username.
-
-    Email and password are required. Other fields are optional.
-    """
-    email = models.EmailField(_('email address'), max_length=254, unique=True)
+    username = models.CharField(_('username '), max_length=254, unique=True)
     first_name = models.CharField(_('first name'), max_length=30, blank=True)
     last_name = models.CharField(_('last name'), max_length=30, blank=True)
     is_staff = models.BooleanField(_('staff status'), default=False,
@@ -52,7 +42,7 @@ class CustomUser(AbstractBaseUser, PermissionsMixin):
 
     objects = CustomUserManager()
 
-    USERNAME_FIELD = 'email'
+    USERNAME_FIELD = 'username'
     REQUIRED_FIELDS = []
 
     class Meta:
@@ -60,26 +50,15 @@ class CustomUser(AbstractBaseUser, PermissionsMixin):
         verbose_name_plural = _('users')
 
     def get_absolute_url(self):
-        return "/users/%s/" % urlquote(self.email)
+        return "/users/%s/" % urlquote(self.username)
 
     def get_full_name(self):
-        """
-        Returns the first_name plus the last_name, with a space in between.
-        """
         full_name = '%s %s' % (self.first_name, self.last_name)
         return full_name.strip()
 
     def get_short_name(self):
-        "Returns the short name for the user."
         return self.first_name
 
-    def email_user(self, subject, message, from_email=None):
-        """
-        Sends an email to this User.
-        """
-        send_mail(subject, message, from_email, [self.email])
-
-
-
+  
         from django.contrib.auth.models import BaseUserManager
 

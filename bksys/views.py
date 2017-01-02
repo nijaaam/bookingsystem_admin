@@ -7,7 +7,7 @@ from django.contrib.auth import logout
 
 def index(request):
 	if request.user.is_authenticated():
-		return render(request,"dashb.html",{'username':request.user.email})
+		return render(request,"dashb.html",{'username':request.user.username})
 	else:
 		return redirect('/')
 	
