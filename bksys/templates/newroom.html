@@ -1,4 +1,4 @@
-<form method = "POST" id="add_room" class="form-horizontal">
+<form method="POST" id="add_room" class="form-horizontal">
     {% csrf_token %}
     <div class="form-group">
         <label for="inputEmail3" class="col-sm-2 control-label">Name</label>
@@ -31,16 +31,54 @@
     </div>
 </form>
 <script type="text/javascript">
+    $.validator.setDefaults({
+        highlight: function(element) {
+            $(element).closest('.form-group').addClass('has-error');
+        },
+        unhighlight: function(element) {
+            $(element).closest('.form-group').removeClass('has-error');
+        },
+        errorElement: 'span',
+        errorClass: 'help-block',
+        errorPlacement: function(error, element) {
+            if (element.parent('.input-group').length) {
+                error.insertAfter(element.parent());
+            } else {
+                error.insertAfter(element);
+            }
+        }
+    });
+    $(document).ready(function() {
+        $('#add_room').validate({
+            rules: {
+                'name': {
+                    required: true,
+                },
+                'location': {
+                    required: true,
+                },
+                'features': {
+                    required: true,
+                },
+                'size': {
+                    required: true,
+                    number: true,
+                },
+            },
+        });
+    });
     $("#add_room").submit(function() {
+        if ($('#add_room').valid()){
             $.ajax({
                 type: 'POST',
                 url: 'add_room/',
                 dataType: 'html',
                 data: $(this).serialize(),
                 success: function(x) {
-                    alert("DONE");
+                    $('#new').click();
                 },
             });
-            return false;
-        });
+        }
+        return false;
+    });
 </script>

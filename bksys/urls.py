@@ -3,11 +3,12 @@ from . import views
 
 urlpatterns = [ url(r'^$',views.index, name = 'index'),
 				url(r'^add_room/$',views.add_room, name = 'add_room'),
+				url(r'^update/$',views.update, name = 'update'),
 				url(r'^newroom_template/$',views.newroom_template, name = 'newroom_template'),
 				url(r'^editroom_template/$',views.editroom_template, name = 'editroom_template'),
-				url(r'^blockroom_template/$',views.blockroom_template, name = 'blockroom_template'),
+				url(r'^viewroom_template/$',views.viewroom_template, name = 'viewroom_template'),
 				url(r'^autocomplete/$',views.autocomplete, name = 'autocomplete'),
 				url(r'^getroom/$',views.getroom, name = 'getroom'),
-				url(r'^block_room/$',views.block_room, name = 'block_room'),
-				url(r'^unblock_room/$',views.unblock_room, name = 'unblock_room'),
+				url(r'^change_status/$',views.change_status, name = 'change_status'),
+				url(r'^log_out/$',views.log_out, name = 'log_out'),
 				]

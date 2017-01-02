@@ -1,24 +1,35 @@
-from django.shortcuts import render
+from django.shortcuts import render,redirect
 from django.http import HttpResponse
 from .models import rooms
 import json
 from django.contrib.auth.decorators import login_required
-
+from django.contrib.auth import logout
 
 def index(request):
 	if request.user.is_authenticated():
-		print "Y"
-	return render(request,"dashb.html",{'username':'user'})
+		return render(request,"dashb.html",{'username':request.user.email})
+	else:
+		return redirect('/')
+	
+
+def log_out(request):
+	logout(request)
+	return redirect('/')
 
 def getroom(request):
 	name = request.POST['name']
-	res = rooms.objects.get(room_name=name)	
-	return render(request,"viewroom.html",{
+	res = rooms.objects.get(room_name=name)
+	if res.in_use == True:
+		status = "In Use"
+	else :
+		status = "Blocked"	
+	return render(request,"room_details.html",{
 		'id':res.room_id,
 		'name':res.room_name,
 		'size':res.room_size,
 		'location':res.room_location,
 		'features':res.room_features,
+		'status': status,
 	})
 
 def autocomplete(request):
@@ -36,23 +47,33 @@ def add_room(request):
 	new_room.save()
 	return HttpResponse(1)
 
-def edit_room(request):
-	rooms_list = rooms.objects.filter(room_id=room.room_id,date__range=[start,end]) 
-	results = [rm_instance.getJSON() for rm_instance in rooms_list]
-	return HttpResponse(json.dumps(results), content_type="application/json")
+def update(request):
+	id = request.POST['id']
+	name =  request.POST['name']
+	size = request.POST['size']
+	loc = request.POST['loc']
+	feat = request.POST['feat']
+	obj = rooms.objects.get(room_id=id)
+	for key in request.POST:
+		if request.POST[key] != " ":
+			if key == 'name':
+				obj.room_name = request.POST[key]
+			elif key == 'size':
+				obj.room_size = request.POST[key]
+			elif key == 'loc':
+				obj.room_location = request.POST[key]
+			elif key == 'feat':
+				obj.room_features = request.POST[key]
+	obj.save()
 
-def block_room(request):
+def change_status(request):
 	id = request.POST['id']
 	print id
 	obj = rooms.objects.get(room_id=id)
-	obj.in_use = False
-	obj.save()
-	return HttpResponse(1)
-
-def unblock_room(request):
-	id = request.POST['id']
-	obj = rooms.objects.get(room_id=id)
-	obj.in_use = True
+	if obj.in_use == True:
+		obj.in_use = False
+	else:
+		obj.in_use = True
 	obj.save()
 	return HttpResponse(1)
 
@@ -62,5 +83,5 @@ def newroom_template(request):
 def editroom_template(request):
 	return render(request,"editroom.html",{})
 
-def blockroom_template(request):
-	return render(request,"blockroom.html",{})
+def viewroom_template(request):
+	return render(request,"viewroom.html",{})

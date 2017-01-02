@@ -1,6 +1,4 @@
-{% block search %} {% include "search.html" %}{% endblock %}
-<div id="viewroom"></div>
-<script type="text/javascript">
+function loadSearch(){
     $('#search').typeahead({
         hint: true,
         highlight: true,
@@ -21,26 +19,7 @@
         },
     });
 
-
     $('#search').on('typeahead:selected', function(e, datum) {
         show_room(datum);
     });
-
-    function add_buttons() {
-    	var update_btn = $('<button class="btn btn-default">Update</button>');
-    	$('#button_group').append(update_btn);
-	}
-    function show_room(x) {
-        $.ajax({
-            type: 'POST',
-            url: 'getroom/',
-            dataType: 'html',
-            data: 'name=' + x,
-            success: function(data) {
-                $('#viewroom').html(data);
-                add_buttons();
-            },
-        });
-    }
-    $('#block_btn')
-</script>
+}
