@@ -80,20 +80,29 @@ DATABASE_ROUTERS = ['bksys.router.DBRouter']
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql', 
-        'NAME': 'admin2',
-        'USER': 'root',
-        'PASSWORD': '123',
-        'HOST': 'localhost',   # Or an IP Address that your DB is hosted on
+        'NAME': 'bksysadmindev',
+        'USER': 'b912fbb71f551f',
+        'PASSWORD': 'a19b3087',
+        'HOST': 'us-cdbr-azure-southcentral-f.cloudapp.net',   
     },
     'rooms': {
         'ENGINE': 'django.db.backends.mysql', 
-        'NAME': 'booking1',
-        'USER': 'root',
-        'PASSWORD': '123',
-        'HOST': 'localhost',   # Or an IP Address that your DB is hosted on
+        'NAME': 'bksysdev',
+        'USER': 'bdc872f41f048b',
+        'PASSWORD': '1c11843c',
+        'HOST': 'us-cdbr-azure-southcentral-f.cloudapp.net',
     }
 }
 
+LOCAL_DB = {
+    'default': {
+        'ENGINE': 'django.db.backends.mysql', 
+        'NAME': 'admin2',
+        'USER': 'root',
+        'PASSWORD': '123',
+        'HOST': 'localhost',   
+    },
+}
 
 # Password validation
 # https://docs.djangoproject.com/en/1.10/ref/settings/#auth-password-validators
