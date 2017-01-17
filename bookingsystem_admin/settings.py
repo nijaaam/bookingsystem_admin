@@ -76,25 +76,32 @@ DATABASE_ROUTERS = ['bksys.router.DBRouter']
 
 # Database
 # https://docs.djangoproject.com/en/1.10/ref/settings/#databases
-
+'''
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql', 
-        'NAME': 'bksysadmindev',
-        'USER': 'b912fbb71f551f',
-        'PASSWORD': 'a19b3087',
+        'NAME': 'admindev',
+        'USER': 'b0da43d0302e37',
+        'PASSWORD': '2dd7b054',
         'HOST': 'us-cdbr-azure-southcentral-f.cloudapp.net',   
     },
     'rooms': {
         'ENGINE': 'django.db.backends.mysql', 
         'NAME': 'bksysdev',
-        'USER': 'bdc872f41f048b',
-        'PASSWORD': '1c11843c',
+        'USER': 'baa0d1902a2abe',
+        'PASSWORD': '9be677e6',
         'HOST': 'us-cdbr-azure-southcentral-f.cloudapp.net',
     }
 }
-
-LOCAL_DB = {
+'''
+DATABASES = {
+    'rooms': {
+        'ENGINE': 'django.db.backends.mysql', 
+        'NAME': 'bookingsystem_dev',
+        'USER': 'root',
+        'PASSWORD': '123',
+        'HOST': 'localhost',   # Or an IP Address that your DB is hosted on
+    },
     'default': {
         'ENGINE': 'django.db.backends.mysql', 
         'NAME': 'admin2',
