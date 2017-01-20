@@ -39,6 +39,11 @@ function autocomplete(query, process) {
             async: false,
             data: 'search=' + $('#search').val(),
             success: function(data) {
+                var cacheResult = {
+                    query: $('#search').val();
+                    data: data;
+                    currentTime: new Date(),
+                };
                 cache[$('#search').val()] = data;
                 return process(data);
             },

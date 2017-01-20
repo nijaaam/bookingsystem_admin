@@ -72,7 +72,6 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'bookingsystem_admin.wsgi.application'
 
-DATABASE_ROUTERS = ['bksys.router.DBRouter']
 
 # Database
 # https://docs.djangoproject.com/en/1.10/ref/settings/#databases
@@ -95,19 +94,12 @@ DATABASES = {
 }
 '''
 DATABASES = {
-    'rooms': {
+    'default': {
         'ENGINE': 'django.db.backends.mysql', 
         'NAME': 'bookingsystem_dev',
         'USER': 'root',
         'PASSWORD': '123',
         'HOST': 'localhost',   # Or an IP Address that your DB is hosted on
-    },
-    'default': {
-        'ENGINE': 'django.db.backends.mysql', 
-        'NAME': 'admin2',
-        'USER': 'root',
-        'PASSWORD': '123',
-        'HOST': 'localhost',   
     },
 }
 

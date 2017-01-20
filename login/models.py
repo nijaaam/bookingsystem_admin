@@ -46,6 +46,7 @@ class CustomUser(AbstractBaseUser, PermissionsMixin):
     REQUIRED_FIELDS = []
 
     class Meta:
+        db_table = "User"
         verbose_name = _('user')
         verbose_name_plural = _('users')
 
@@ -59,6 +60,6 @@ class CustomUser(AbstractBaseUser, PermissionsMixin):
     def get_short_name(self):
         return self.first_name
 
-  
+
         from django.contrib.auth.models import BaseUserManager
 
