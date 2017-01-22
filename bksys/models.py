@@ -1,5 +1,4 @@
 from __future__ import unicode_literals
-
 from django.db import models
 
 class rooms(models.Model):
@@ -8,21 +7,12 @@ class rooms(models.Model):
     room_size       = models.IntegerField(null = False)
     room_location   = models.TextField(null = False)
     room_features   = models.TextField(null = False)
-    in_use             = models.BooleanField(default=True)
+    in_use          = models.BooleanField(default=True)
+    
+    def getRoomName(self):
+        return self.room_name
 
     class Meta:
         db_table = "rooms"
-        
-    def getJSON(self):
-        return dict(
-            room_id = self.room_id,
-            room_name = self.room_name,
-            room_size = self.room_size,
-            room_location = self.room_location,
-            room_features = self.room_features,
-        )
-
-    def getRoomName(self):
-        return self.room_name
 
     

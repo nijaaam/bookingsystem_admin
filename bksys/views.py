@@ -36,6 +36,7 @@ def autocomplete(request):
 	query = request.POST['search']
 	rooms_list = rooms.objects.filter(room_name__contains=query)
 	results = [rm_instance.getRoomName() for rm_instance in rooms_list]
+	print results
 	return HttpResponse(json.dumps(results), content_type="application/json")
 
 def add_room(request):

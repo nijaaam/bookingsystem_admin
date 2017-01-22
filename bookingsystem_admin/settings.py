@@ -29,7 +29,7 @@ ALLOWED_HOSTS = ['*']
 
 AUTH_USER_MODEL = 'login.CustomUser'
 # Application definition
-
+DATABASE_ROUTERS = ['bksys.router.DBRouter']
 INSTALLED_APPS = [
     'login',
     'bksys',
@@ -75,32 +75,21 @@ WSGI_APPLICATION = 'bookingsystem_admin.wsgi.application'
 
 # Database
 # https://docs.djangoproject.com/en/1.10/ref/settings/#databases
-'''
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql', 
-        'NAME': 'admindev',
-        'USER': 'b0da43d0302e37',
-        'PASSWORD': '2dd7b054',
-        'HOST': 'us-cdbr-azure-southcentral-f.cloudapp.net',   
+        'NAME': 'adminbksysdev',
+        'USER': 'root',
+        'PASSWORD': 'Bksysuser_2017',
+        'HOST': 'mysql2704.cloudapp.net',
     },
     'rooms': {
         'ENGINE': 'django.db.backends.mysql', 
         'NAME': 'bksysdev',
-        'USER': 'baa0d1902a2abe',
-        'PASSWORD': '9be677e6',
-        'HOST': 'us-cdbr-azure-southcentral-f.cloudapp.net',
-    }
-}
-'''
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.mysql', 
-        'NAME': 'bookingsystem_dev',
         'USER': 'root',
-        'PASSWORD': '123',
-        'HOST': 'localhost',   # Or an IP Address that your DB is hosted on
-    },
+        'PASSWORD': 'Bksysuser_2017',
+        'HOST': 'mysql2704.cloudapp.net',
+    }
 }
 
 # Password validation
