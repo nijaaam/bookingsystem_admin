@@ -51,7 +51,7 @@ class VirtualEnv(Node):
         self.run_management_command('collectstatic --clear --noinput --settings=bookingsystem_admin.production')
 
     def update_database(self):
-        self.run_management_command('migrate --noinput --settings=bookingsystem_admin.production')
+        self.run_management_command('migrate login --noinput --settings=bookingsystem_admin.production')
 
     def clean(self):
         with self.hosts.cd(project_dir):
