@@ -20,7 +20,7 @@ class VirtualEnv(Node):
     packages = []
 
     @property
-    def activate_cmd(self):
+    def activate_cmd(self): 
         return  '. %sbin/activate' % self.location
 
     def install_requirements(self):
@@ -130,7 +130,8 @@ class DjangoDeployment(Node):
         self.hosts.run(runOnBoot)
     
     def fullSetup(self):
-        self.hosts.sudo('apt-get update && apt-get install mysql-client-5.7 build-essential libssl-dev libffi-dev virtualenv uwsgi nginx libmysqlclient-dev python-pip')
+        #self.hosts.sudo('apt-get update && apt-get install mysql-client-5.7 build-essential libssl-dev libffi-dev virtualenv uwsgi nginx libmysqlclient-dev python-pip')
+        #self.setproductionsettings()
         self.hosts.sudo('virtualenv ' + virtualenv)
         try:
             self.git.clone()
@@ -148,6 +149,15 @@ class DjangoDeployment(Node):
         self.runSpecialCmd('mkdir /etc/uwsgi/vassals')
         self.hosts.sudo('ln -f -s ' + project_dir + 'start_app.ini /etc/uwsgi/vassals/')
         self.hosts.run('uwsgi --emperor /etc/uwsgi/vassals --uid www-data --gid www-data')
+        
+
+    def setproductionsettings(self):
+        self.hosts.sudo('touch /etc/production.txt')
+        self.hosts.sudo("echo '=3v%n_g54=o&5p4*l@lm%#*49f@+kx)d&@1a=dbnrc^7)oxmz-' >> /etc/production.txt")
+        self.hosts.sudo('echo "dbbackupbksys" >> /etc/production.txt')
+        self.hosts.sudo('echo "CkD5/KNWSF/BV4sM0XcnyrfBgPmZXjQW4i/FR4l2wX2Mn/PMZtZ/5u9D2wP6JUpXHDyJUwDtaiAECnuOYBPmfw==" >> /etc/production.txt')
+        self.hosts.sudo('echo "admindb" >> /etc/production.txt')
+
 
     def runSpecialCmd(self,cmd):
         try:
