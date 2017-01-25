@@ -15,6 +15,13 @@ import os
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
+AZURE_ACCOUNT_NAME = "dbbackupbksys"
+AZURE_ACCOUNT_KEY  = 'CkD5/KNWSF/BV4sM0XcnyrfBgPmZXjQW4i/FR4l2wX2Mn/PMZtZ/5u9D2wP6JUpXHDyJUwDtaiAECnuOYBPmfw=='
+AZURE_CONTAINER = 'fullbkup'
+
+DEFAULT_FILE_STORAGE = 'storage.AzureStorage'
+DBBACKUP_STORAGE = DEFAULT_FILE_STORAGE
+
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/1.10/howto/deployment/checklist/
@@ -33,6 +40,8 @@ DATABASE_ROUTERS = ['bksys.router.DBRouter']
 INSTALLED_APPS = [
     'login',
     'bksys',
+    'storages',
+    'dbbackup',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
