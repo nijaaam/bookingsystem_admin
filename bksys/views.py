@@ -10,8 +10,7 @@ def index(request):
 		return render(request,"dashb.html",{'username':request.user.username})
 	else:
 		return redirect('/')
-	
-
+		
 def log_out(request):
 	logout(request)
 	return redirect('/')
