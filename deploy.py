@@ -11,7 +11,7 @@ project_name = "bookingsystem_admin/"
 virtualenv = "BKSYSDEPLOY/"
 project_dir = home + virtualenv + project_name
 repo = 'https://github.com/nijaaam/bookingsystem_admin.git'
-keyLocation = '/home/nijam/Desktop/keys/bookingsystem'
+keyLocation = '/home/jamun-g/Desktop/keys/bookingsystem'
 cronLog = '/var/log/cronjobs/'
 
 class VirtualEnv(Node):
