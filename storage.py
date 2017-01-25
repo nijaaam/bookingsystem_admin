@@ -132,5 +132,4 @@ class AzureStorage(Storage):
 
         for name in blob_list:
             files.append(name.name[path_len:])
-        print files
         return ([], files)
