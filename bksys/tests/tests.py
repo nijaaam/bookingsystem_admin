@@ -13,15 +13,21 @@ from selenium.webdriver.support import expected_conditions as EC
 from selenium.common.exceptions import TimeoutException, WebDriverException
 from django.conf import settings
 import socket
+from django.contrib.auth.models import User
 
 '''
+class modelsTest(TestCase):
+    def testCreateuser(self):
+        CustomUser.objects.create_superuser('name','123')
+        self.assertEqual(True,CustomUser.objects.get(username='name').check_password('123'))
+             
 class viewTest(TestCase):
     def setUp(self):
         self.client = Client()
         self.factory = RequestFactory()
         CustomUser.objects.create_superuser('name','123')
         #Run if keepdb is enabled
-        roooms.objects.all().delete()
+        rooms.objects.all().delete()
 
     def testIndexRedirect(self):
         response = self.client.get('/dashboard/')
@@ -93,7 +99,7 @@ class viewTest(TestCase):
         self.assertTemplateUsed(response,'newroom.html')
         response = self.client.get('/dashboard/viewroom_template/')
         self.assertTemplateUsed(response,'viewroom.html')
-'''
+
 class requirementsTest(LiveServerTestCase):
     def setUp(self):
         self.browser = webdriver.Chrome()
@@ -111,7 +117,7 @@ class requirementsTest(LiveServerTestCase):
     
     def tearDown(self):  
         self.browser.quit()
-    '''
+    
     def testAddroom(self):
         rooms.objects.all().delete() 
         self.insertInput('username','user')
@@ -162,4 +168,4 @@ class requirementsTest(LiveServerTestCase):
         self.insertInput('password','1233')
         self.browser.find_element_by_tag_name('button').click()
         self.assertEqual(self.browser.find_element_by_id('msg').text, "Wrong Input, Try again.")
-    '''
+'''
