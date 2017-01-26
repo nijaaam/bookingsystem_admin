@@ -1,0 +1,48 @@
+1485422103952	geckodriver	INFO	Listening on 127.0.0.1:47950
+1485422104948	mozprofile::profile	INFO	Using profile path /tmp/rust_mozprofile.YK6COJm7Ivci
+1485422104951	geckodriver::marionette	INFO	Starting browser /usr/bin/firefox
+1485422104979	geckodriver::marionette	INFO	Connecting to Marionette on localhost:38043
+
+(firefox:6536): GLib-GObject-WARNING **: Attempt to add property GnomeProgram::sm-connect after class was initialised
+
+(firefox:6536): GLib-GObject-WARNING **: Attempt to add property GnomeProgram::show-crash-dialog after class was initialised
+
+(firefox:6536): GLib-GObject-WARNING **: Attempt to add property GnomeProgram::display after class was initialised
+
+(firefox:6536): GLib-GObject-WARNING **: Attempt to add property GnomeProgram::default-icon after class was initialised
+1485422402930	geckodriver	INFO	Listening on 127.0.0.1:57172
+1485422403927	mozprofile::profile	INFO	Using profile path /tmp/rust_mozprofile.jN8Hjpw8KJwP
+1485422403930	geckodriver::marionette	INFO	Starting browser /usr/bin/firefox
+1485422403940	geckodriver::marionette	INFO	Connecting to Marionette on localhost:50211
+
+(firefox:6994): GLib-GObject-WARNING **: Attempt to add property GnomeProgram::sm-connect after class was initialised
+
+(firefox:6994): GLib-GObject-WARNING **: Attempt to add property GnomeProgram::show-crash-dialog after class was initialised
+
+(firefox:6994): GLib-GObject-WARNING **: Attempt to add property GnomeProgram::display after class was initialised
+
+(firefox:6994): GLib-GObject-WARNING **: Attempt to add property GnomeProgram::default-icon after class was initialised
+1485422522244	geckodriver	INFO	Listening on 127.0.0.1:54957
+1485422523234	mozprofile::profile	INFO	Using profile path /tmp/rust_mozprofile.xQEwGDkl1T3i
+1485422523236	geckodriver::marionette	INFO	Starting browser /usr/bin/firefox
+1485422523245	geckodriver::marionette	INFO	Connecting to Marionette on localhost:50120
+
+(firefox:7196): GLib-GObject-WARNING **: Attempt to add property GnomeProgram::sm-connect after class was initialised
+
+(firefox:7196): GLib-GObject-WARNING **: Attempt to add property GnomeProgram::show-crash-dialog after class was initialised
+
+(firefox:7196): GLib-GObject-WARNING **: Attempt to add property GnomeProgram::display after class was initialised
+
+(firefox:7196): GLib-GObject-WARNING **: Attempt to add property GnomeProgram::default-icon after class was initialised
+1485422601867	geckodriver	INFO	Listening on 127.0.0.1:37109
+1485422602863	mozprofile::profile	INFO	Using profile path /tmp/rust_mozprofile.1T4x49IQYZoz
+1485422602866	geckodriver::marionette	INFO	Starting browser /usr/bin/firefox
+1485422602875	geckodriver::marionette	INFO	Connecting to Marionette on localhost:53559
+
+(firefox:7445): GLib-GObject-WARNING **: Attempt to add property GnomeProgram::sm-connect after class was initialised
+
+(firefox:7445): GLib-GObject-WARNING **: Attempt to add property GnomeProgram::show-crash-dialog after class was initialised
+
+(firefox:7445): GLib-GObject-WARNING **: Attempt to add property GnomeProgram::display after class was initialised
+
+(firefox:7445): GLib-GObject-WARNING **: Attempt to add property GnomeProgram::default-icon after class was initialised
