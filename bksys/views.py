@@ -12,6 +12,7 @@ def index(request):
 		return redirect('/')
 		
 def log_out(request):
+	print "HERE"
 	logout(request)
 	return redirect('/')
 
@@ -38,6 +39,7 @@ def autocomplete(request):
 	return HttpResponse(json.dumps(results), content_type="application/json")
 
 def add_room(request):
+	print "HERE"
 	name = request.POST['name']
 	size = request.POST['size']
 	location = request.POST['location']

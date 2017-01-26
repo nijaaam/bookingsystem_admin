@@ -5,14 +5,23 @@ from login.models import CustomUser
 from bksys.models import rooms
 from bksys.views import logout
 from bksys.views import *
-import json
+import json, time
 from django.contrib.sessions.middleware import SessionMiddleware
+from selenium import webdriver
+from selenium.webdriver.support.ui import WebDriverWait
+from selenium.webdriver.support import expected_conditions as EC
+from selenium.common.exceptions import TimeoutException, WebDriverException
+from django.conf import settings
+import socket
 
+'''
 class viewTest(TestCase):
     def setUp(self):
         self.client = Client()
         self.factory = RequestFactory()
         CustomUser.objects.create_superuser('name','123')
+        #Run if keepdb is enabled
+        roooms.objects.all().delete()
 
     def testIndexRedirect(self):
         response = self.client.get('/dashboard/')
@@ -46,6 +55,7 @@ class viewTest(TestCase):
         request.POST['search'] = 'roo'
         response = autocomplete(request)
         response = json.loads(response.content)
+        print response
         self.assertEqual(len(response), 2)
         self.assertEqual(response[0],'rooom')
         self.assertEqual(response[1],'rooom1')
@@ -83,21 +93,73 @@ class viewTest(TestCase):
         self.assertTemplateUsed(response,'newroom.html')
         response = self.client.get('/dashboard/viewroom_template/')
         self.assertTemplateUsed(response,'viewroom.html')
-
+'''
 class requirementsTest(LiveServerTestCase):
-    def setUp(self):  
-        self.browser = webdriver.Firefox()
-        CustomUser.objects.create_superuser('name','123')
-        self.browser.get("http://localhost:8000")
+    def setUp(self):
+        self.browser = webdriver.Chrome()
+        self.browser.implicitly_wait(3)
+        CustomUser.objects.create_superuser('user','123')
+        self.browser.get("http://localhost:8081")
 
     def insertInput(self,id,value):
         self.browser.find_element_by_id(id).clear()
         self.browser.find_element_by_id(id).send_keys(value)
     
+    def insertInputbyName(self,name,value):
+        self.browser.find_element_by_name(name).clear()
+        self.browser.find_element_by_name(name).send_keys(value)
+    
     def tearDown(self):  
         self.browser.quit()
-
+    '''
     def testAddroom(self):
-        insertInput('username','user')
-        insertInput('password','123')
+        rooms.objects.all().delete() 
+        self.insertInput('username','user')
+        self.insertInput('password','123')
+        self.browser.implicitly_wait(3)
         self.browser.find_element_by_tag_name('button').click()
+        self.browser.implicitly_wait(3)
+        self.browser.find_element_by_xpath('//a[contains(text(),"Add Room")]').click()
+        self.browser.implicitly_wait(3)
+        self.insertInputbyName('name','name_test')
+        self.insertInputbyName('size',10)
+        self.insertInputbyName('location','loc')
+        self.insertInputbyName('features','feat')
+        self.browser.find_element_by_xpath('//button[contains(text(),"Add Room")]').click()
+        self.browser.implicitly_wait(5)
+        time.sleep(3)
+        room = rooms.objects.get(room_name='name_test')
+        self.assertEqual(room.room_size,10)
+        self.assertEqual(room.room_location,'loc')
+        self.assertEqual(room.room_features,'feat')
+    
+    def testViewRoom(self):
+        rooms.objects.all().delete() 
+        self.insertInput('username','user')
+        rooms.objects.create(room_name='new_room',room_size=10,room_location='loc',room_features=   'feat')
+        self.insertInput('password','123')
+        self.browser.implicitly_wait(3)
+        self.browser.find_element_by_tag_name('button').click()
+        self.browser.implicitly_wait(3)
+        self.insertInput('search','new_room')
+        self.browser.find_element_by_id('search_submit').click()
+        time.sleep(1)
+        self.assertEqual(self.browser.find_element_by_id('name').get_attribute("value"),'new_room')
+        #testing Update
+        self.insertInput('features','new_feat')
+        self.browser.find_element_by_xpath('//button[contains(text(),"Update")]').click()
+        time.sleep(2)
+        self.assertEqual(rooms.objects.get(room_name='new_room').room_features,"new_feat")
+        ##testing block/unblock
+        self.browser.find_element_by_id('block').click()
+        time.sleep(2) 
+        self.assertEqual(rooms.objects.get(room_name='new_room').in_use,False)
+        time.sleep(3)
+    
+    def testFailedLogin(self):
+        rooms.objects.all().delete() 
+        self.insertInput('username','user')
+        self.insertInput('password','1233')
+        self.browser.find_element_by_tag_name('button').click()
+        self.assertEqual(self.browser.find_element_by_id('msg').text, "Wrong Input, Try again.")
+    '''

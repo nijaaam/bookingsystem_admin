@@ -1,13 +1,16 @@
 <div class="input-group search">
     <input id = "search" name = "search" type="text" style = "border-right: 0;" class="form-control" placeholder="Search">
     <span style="background: white !important; " class="input-group-addon">
-        <button style = "border:0; background:transparent;"type="submit">
+        <button id="search_submit" style = "border:0; background:transparent;" type="submit">
         <span class="glyphicon glyphicon-search"></span>
     </button>
     </span> 
 </div>
 <div id="viewroom"></div>
 <script type="text/javascript">
+    $('#search_submit').click(function(){
+        show_room($('#search').val());
+    });
     loadSearch();
     function getVAR(x) {
         var initial = $('#' + x).prop("defaultValue");
@@ -57,7 +60,7 @@
 
     function add_buttons() {
         var update_btn = $('<button style="margin-left: 10px"class="btn btn-default">Update</button>');
-        var block_btn = $('<button class="btn btn-default">Block/Unblock</button>');
+        var block_btn = $('<button id ="block" class="btn btn-default">Block/Unblock</button>');
         update_btn.click(update);
         block_btn.click(change_status);
         $('#button_group').append(update_btn);
