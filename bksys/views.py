@@ -12,7 +12,6 @@ def index(request):
 		return redirect('/')
 		
 def log_out(request):
-	print "HERE"
 	logout(request)
 	return redirect('/')
 
@@ -39,7 +38,6 @@ def autocomplete(request):
 	return HttpResponse(json.dumps(results), content_type="application/json")
 
 def add_room(request):
-	print "HERE"
 	name = request.POST['name']
 	size = request.POST['size']
 	location = request.POST['location']
@@ -69,7 +67,6 @@ def update(request):
 
 def change_status(request):
 	id = request.POST['id']
-	print id
 	obj = rooms.objects.get(room_id=id)
 	if obj.in_use == True:
 		obj.in_use = False

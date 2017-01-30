@@ -12,7 +12,7 @@ virtualenv = "BKSYSDEPLOY/"
 project_dir = home + virtualenv + project_name
 repo = 'https://github.com/nijaaam/bookingsystem_admin.git'
 keyLocation = '/home/jamun-g/Desktop/keys/bookingsystem'
-cronLog = '/var/log/cronjobs/'
+cronLog = '& >> /var/log/cronjobs/'
 
 class VirtualEnv(Node):
     location = required_property()
@@ -115,10 +115,10 @@ class DjangoDeployment(Node):
         self.hosts.run('crontab -l')
 
     def addCJ(self):
-        backup = '0 0 * * * main ' + project_dir + ' manage.py dbbackup > ' + cronLog
+        backup = '0 0 * * * main ' + project_dir + ' manage.py dbbackup  ' + cronLog
         backup = '{ crontab -l -u main; echo "'+ backup +'"; } | crontab -u main -'
 
-        checkIfRunning = '@hourly ' + project_dir + ' manage.py checkIfRunning > ' + cronLog
+        checkIfRunning = '@hourly ' + project_dir + ' manage.py checkIfRunning  ' + cronLog
         checkIfRunning = '{ crontab -l -u main; echo "'+ checkIfRunning +'"; } | crontab -u main -'
 
         runOnBoot = '@reboot ' + project_dir + 'runOnBoot.sh'

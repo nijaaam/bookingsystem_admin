@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     'bksys',
     'storages',
     'dbbackup',
+    'coverage',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -89,17 +90,16 @@ DATABASES = {
         'ENGINE': 'django.db.backends.mysql', 
         'NAME': 'adminbksysdev',
         'USER': 'root',
-        'PASSWORD': 'Bksysuser_2017',
-        'HOST': 'mysql2704.cloudapp.net',
+        'PASSWORD': '123',
     },
     'rooms': {
         'ENGINE': 'django.db.backends.mysql', 
         'NAME': 'bksysdev',
         'USER': 'root',
-        'PASSWORD': 'Bksysuser_2017',
-        'HOST': 'mysql2704.cloudapp.net',
+        'PASSWORD': '123',
     }
 }
+
 
 # Password validation
 # https://docs.djangoproject.com/en/1.10/ref/settings/#auth-password-validators

@@ -15,7 +15,7 @@ from django.conf import settings
 import socket
 from django.contrib.auth.models import User
 
-'''
+
 class modelsTest(TestCase):
     def testCreateuser(self):
         CustomUser.objects.create_superuser('name','123')
@@ -105,7 +105,7 @@ class requirementsTest(LiveServerTestCase):
         self.browser = webdriver.Chrome()
         self.browser.implicitly_wait(3)
         CustomUser.objects.create_superuser('user','123')
-        self.browser.get("http://localhost:8081")
+        self.browser.get(self.live_server_url)
 
     def insertInput(self,id,value):
         self.browser.find_element_by_id(id).clear()
@@ -168,4 +168,12 @@ class requirementsTest(LiveServerTestCase):
         self.insertInput('password','1233')
         self.browser.find_element_by_tag_name('button').click()
         self.assertEqual(self.browser.find_element_by_id('msg').text, "Wrong Input, Try again.")
-'''
+
+    def testLogOut(self):
+        CustomUser.objects.create_superuser('user1','1233')
+        self.insertInput('username','user1')
+        self.insertInput('password','1233')
+        self.browser.find_element_by_tag_name('button').click()
+        self.browser.find_element_by_xpath('//*[@id="logout"]').click()
+        time.sleep(1)
+        self.assertEqual(self.browser.current_url,self.live_server_url +'/')
