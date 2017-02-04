@@ -83,7 +83,7 @@ class Git(Node):
 
     def checkout(self, commit):
         with self.hosts.cd(project_dir, expand=True):
-            self.hosts.run("git checkout '%s'" % esc1(commit))
+            self.hosts.sudo("git checkout '%s'" % esc1(commit))
 
     def tag(self):
         with self.hosts.cd(project_dir, expand=True):
@@ -106,6 +106,7 @@ class DjangoDeployment(Node):
         self.git.checkout('release')
         self.virtual_env.clean()
         self.git.pull()
+        self.git.tag()
         self.virtual_env.setup_env()
         self.virtual_env.update_database()
         self.virtual_env.collectstatic()
