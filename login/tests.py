@@ -16,7 +16,7 @@ from selenium.webdriver.support.ui import Select
 class viewsTest(TestCase):
     def setUp(self):
         self.client = Client()
-        CustomUser.objects.create_superuser('name','123')
+        CustomUser.objects.create_user('name','123')
 
     def test_get(self):
         response = self.client.get('/')

@@ -18,14 +18,14 @@ from django.contrib.auth.models import User
 
 class modelsTest(TestCase):
     def testCreateuser(self):
-        CustomUser.objects.create_superuser('name','123')
+        CustomUser.objects.create_user('name','123')
         self.assertEqual(True,CustomUser.objects.get(username='name').check_password('123'))
              
 class viewTest(TestCase):
     def setUp(self):
         self.client = Client()
         self.factory = RequestFactory()
-        CustomUser.objects.create_superuser('name','123')
+        CustomUser.objects.create_user('name','123')
         #Run if keepdb is enabled
         rooms.objects.all().delete()
 
@@ -104,7 +104,7 @@ class requirementsTest(LiveServerTestCase):
     def setUp(self):
         self.browser = webdriver.Chrome()
         self.browser.implicitly_wait(3)
-        CustomUser.objects.create_superuser('user','123')
+        CustomUser.objects.create_user('user','123')
         self.browser.get(self.live_server_url)
 
     def insertInput(self,id,value):
@@ -170,7 +170,7 @@ class requirementsTest(LiveServerTestCase):
         self.assertEqual(self.browser.find_element_by_id('msg').text, "Wrong Input, Try again.")
 
     def testLogOut(self):
-        CustomUser.objects.create_superuser('user1','1233')
+        CustomUser.objects.create_user('user1','1233')
         self.insertInput('username','user1')
         self.insertInput('password','1233')
         self.browser.find_element_by_tag_name('button').click()
