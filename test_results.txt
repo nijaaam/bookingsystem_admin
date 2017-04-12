@@ -1,0 +1,28 @@
+testCreateuser (bksys.tests.tests.modelsTest) ... /usr/local/lib/python2.7/dist-packages/django/db/backends/mysql/base.py:110: Warning: (1364L, u"Field 'first_name' doesn't have a default value")
+  return self.cursor.execute(query, args)
+/usr/local/lib/python2.7/dist-packages/django/db/backends/mysql/base.py:110: Warning: (1364L, u"Field 'last_name' doesn't have a default value")
+  return self.cursor.execute(query, args)
+/usr/local/lib/python2.7/dist-packages/django/db/backends/mysql/base.py:110: Warning: (1364L, u"Field 'is_staff' doesn't have a default value")
+  return self.cursor.execute(query, args)
+ok
+testAddroom (bksys.tests.tests.viewTest) ... ok
+testAutocompelte (bksys.tests.tests.viewTest) ... ok
+testChangestatus (bksys.tests.tests.viewTest) ... ok
+testGetRoom (bksys.tests.tests.viewTest) ... ok
+testGettemplates (bksys.tests.tests.viewTest) ... ok
+testIndex (bksys.tests.tests.viewTest) ... ok
+testIndexRedirect (bksys.tests.tests.viewTest) ... ok
+testLogout (bksys.tests.tests.viewTest) ... ok
+testUpdate (bksys.tests.tests.viewTest) ... ok
+test_failed_login (login.tests.viewsTest) ... ok
+test_get (login.tests.viewsTest) ... ok
+test_passed_login (login.tests.viewsTest) ... ok
+testAddroom (bksys.tests.tests.requirementsTest) ... ok
+testFailedLogin (bksys.tests.tests.requirementsTest) ... ok
+testLogOut (bksys.tests.tests.requirementsTest) ... ok
+testViewRoom (bksys.tests.tests.requirementsTest) ... ok
+
+----------------------------------------------------------------------
+Ran 17 tests in 43.858s
+
+OK

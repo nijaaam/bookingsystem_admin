@@ -1,0 +1,17 @@
+Name                              Stmts   Miss  Cover
+-----------------------------------------------------
+bksys/admin.py                        1      0   100%
+bksys/models.py                      13      0   100%
+bksys/urls.py                         3      0   100%
+bksys/views.py                       63      2    97%
+bookingsystem_admin/settings.py      27      0   100%
+bookingsystem_admin/testing.py        2      0   100%
+bookingsystem_admin/urls.py           3      0   100%
+login/admin.py                       15      0   100%
+login/forms.py                       16      4    75%
+login/models.py                      30      2    93%
+login/tests.py                       28      0   100%
+login/urls.py                         3      0   100%
+login/views.py                       14      0   100%
+-----------------------------------------------------
+TOTAL                               218      8    96%
