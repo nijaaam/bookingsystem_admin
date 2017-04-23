@@ -19,14 +19,14 @@ ALLOWED_HOSTS = ['*']
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql', 
-        'NAME': 'adminbksysdev',
+        'NAME': 'adminbksys',
         'USER': 'root',
         'PASSWORD': 'Bksysuser_2017',
         'HOST': 'mysql2704.cloudapp.net',
     },
     'rooms': {
         'ENGINE': 'django.db.backends.mysql', 
-        'NAME': 'bksysdev',
+        'NAME': 'bksys',
         'USER': 'root',
         'PASSWORD': 'Bksysuser_2017',
         'HOST': 'mysql2704.cloudapp.net',
